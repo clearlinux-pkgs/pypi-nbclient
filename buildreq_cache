@@ -1,0 +1,6 @@
+0.5.9
+pypi(async_generator)
+pypi(jupyter_client)
+pypi(nbformat)
+pypi(nest_asyncio)
+pypi(traitlets)

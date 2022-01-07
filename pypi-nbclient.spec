@@ -18,7 +18,7 @@ BuildRequires : buildreq-distutils3
 Provides: nbclient
 Provides: nbclient-python
 Provides: nbclient-python3
-BuildRequires : pluggy
+BuildRequires : pypi(pluggy)
 BuildRequires : py-python
 BuildRequires : pypi(async_generator)
 BuildRequires : pypi(jupyter_client)
@@ -27,7 +27,7 @@ BuildRequires : pypi(nest_asyncio)
 BuildRequires : pypi(traitlets)
 BuildRequires : pytest
 BuildRequires : tox
-BuildRequires : virtualenv
+BuildRequires : pypi(virtualenv)
 
 %description
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jupyter/nbclient/master?filepath=binder%2Frun_nbclient.ipynb)

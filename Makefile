@@ -1,5 +1,5 @@
 PKG_NAME := pypi-nbclient
-URL = https://files.pythonhosted.org/packages/9d/8a/c36a91676da7115753e46931d672f2fff6003f6b9e78fb2dee8e739b9dcd/nbclient-0.7.0.tar.gz
+URL = https://files.pythonhosted.org/packages/19/ab/3508807c537cca591f85bb28bb914b9b64fd9f4dfa70e0847cf514c5fbd0/nbclient-0.7.2.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common

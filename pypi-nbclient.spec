@@ -4,7 +4,7 @@
 #
 Name     : pypi-nbclient
 Version  : 0.7.2
-Release  : 34
+Release  : 35
 URL      : https://files.pythonhosted.org/packages/19/ab/3508807c537cca591f85bb28bb914b9b64fd9f4dfa70e0847cf514c5fbd0/nbclient-0.7.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/19/ab/3508807c537cca591f85bb28bb914b9b64fd9f4dfa70e0847cf514c5fbd0/nbclient-0.7.2.tar.gz
 Summary  : A client library for executing notebooks. Formerly nbconvert's ExecutePreprocessor.

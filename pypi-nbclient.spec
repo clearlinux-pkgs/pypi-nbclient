@@ -4,14 +4,15 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-nbclient
-Version  : 0.7.3
-Release  : 36
-URL      : https://files.pythonhosted.org/packages/ea/6a/ab350db84894a506180aee7f1491579f1881476526207a8247d025dd63f6/nbclient-0.7.3.tar.gz
-Source0  : https://files.pythonhosted.org/packages/ea/6a/ab350db84894a506180aee7f1491579f1881476526207a8247d025dd63f6/nbclient-0.7.3.tar.gz
+Version  : 0.7.4
+Release  : 37
+URL      : https://files.pythonhosted.org/packages/c8/ee/b9351110fbbc8229863cbc54454f1db91f7836c730018d674a188ede5efd/nbclient-0.7.4.tar.gz
+Source0  : https://files.pythonhosted.org/packages/c8/ee/b9351110fbbc8229863cbc54454f1db91f7836c730018d674a188ede5efd/nbclient-0.7.4.tar.gz
 Summary  : A client library for executing notebooks. Formerly nbconvert's ExecutePreprocessor.
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: pypi-nbclient-bin = %{version}-%{release}
+Requires: pypi-nbclient-license = %{version}-%{release}
 Requires: pypi-nbclient-python = %{version}-%{release}
 Requires: pypi-nbclient-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -24,7 +25,6 @@ BuildRequires : pypi(hatchling)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jupyter/nbclient/main?filepath=binder%2Frun_nbclient.ipynb)
 [![Build Status](https://github.com/jupyter/nbclient/workflows/CI/badge.svg)](https://github.com/jupyter/nbclient/actions)
 [![Documentation Status](https://readthedocs.org/projects/nbclient/badge/?version=latest)](https://nbclient.readthedocs.io/en/latest/?badge=latest)
-[![CodeCov](https://codecov.io/gh/jupyter/nbclient/coverage.svg?branch=main)](https://codecov.io/gh/jupyter/nbclient?branch=main)
 [![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
 [![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
 [![Python 3.9](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/downloads/release/python-390/)
@@ -35,9 +35,18 @@ BuildRequires : pypi(hatchling)
 %package bin
 Summary: bin components for the pypi-nbclient package.
 Group: Binaries
+Requires: pypi-nbclient-license = %{version}-%{release}
 
 %description bin
 bin components for the pypi-nbclient package.
+
+
+%package license
+Summary: license components for the pypi-nbclient package.
+Group: Default
+
+%description license
+license components for the pypi-nbclient package.
 
 
 %package python
@@ -64,10 +73,10 @@ python3 components for the pypi-nbclient package.
 
 
 %prep
-%setup -q -n nbclient-0.7.3
-cd %{_builddir}/nbclient-0.7.3
+%setup -q -n nbclient-0.7.4
+cd %{_builddir}/nbclient-0.7.4
 pushd ..
-cp -a nbclient-0.7.3 buildavx2
+cp -a nbclient-0.7.4 buildavx2
 popd
 
 %build
@@ -75,7 +84,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680551816
+export SOURCE_DATE_EPOCH=1682453005
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -99,6 +108,8 @@ popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-nbclient
+cp %{_builddir}/nbclient-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-nbclient/ad02c18fe3473036abab34edb7ca0f5fc206d222 || :
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -121,6 +132,10 @@ rm -f %{buildroot}*/usr/bin/jupyter-run
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/jupyter-execute
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-nbclient/ad02c18fe3473036abab34edb7ca0f5fc206d222
 
 %files python
 %defattr(-,root,root,-)
